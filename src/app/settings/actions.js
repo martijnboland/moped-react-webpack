@@ -1,10 +1,10 @@
 var Reflux = require('reflux');
 
-var actions = Reflux.createActions({ 
+var Actions = Reflux.createActions({ 
   'verifyMopidyUrl': { asyncResult: true },
   'verifyMopidyUrlReady': {},
   'save': {},
   'saved': {}
 });
 
-module.exports = actions;
+module.exports = Actions;

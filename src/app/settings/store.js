@@ -1,12 +1,12 @@
 var Reflux = require('reflux');
 var Mopidy = require('mopidy');
-var actions = require('./actions');
+var SettingsActions = require('./actions');
 
 var settingsKey = 'moped:settings';
 
 var settingsStore = Reflux.createStore({
   init: function () {
-    this.listenToMany(actions);
+    this.listenToMany(SettingsActions);
   },
   onVerifyMopidyUrl: function (mopidyUrl) {
     var mopidy = new Mopidy({ 
@@ -18,6 +18,7 @@ var settingsStore = Reflux.createStore({
       window.alert('Connection successful.');
     });
     mopidy.on('websocket:error', function(error) {
+      console.log(error);
       window.alert('Unable to connect to Mopidy server. Check if the url is correct.');
     });
 

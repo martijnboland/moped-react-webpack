@@ -1,33 +1,21 @@
 var React = require('react'); 
+var Reflux = require('reflux');
 var Router = require('react-router');
+var Mopidy = require('mopidy');
 
 var DefaultRoute = Router.DefaultRoute;
 var Link = Router.Link;
 var Route = Router.Route;
 var RouteHandler = Router.RouteHandler;
 
+var Header = require('./header.jsx');
 var Home = require('./home.jsx');
 var Settings = require('./settings/settings.jsx');
 
-var connectionStates = {
-  online: 'Online',
-  offline: 'Offline'
-};
+var MainStore = require('./mainstore');
 
 var Main = React.createClass({
-  getInitialState: function() {
-    return {
-      isSidebarVisibleForMobile: false,
-      isBackVisible: false,
-      connectionState: connectionStates.offline
-    };
-  },
-  toggleSidebar: function(e) {
-    this.setState({ isSidebarVisibleForMobile: ! this.state.isSidebarVisibleForMobile });
-  },
-  goBack: function(e) {
-    window.history.back();
-  },
+  mixins: [Reflux.connect(MainStore)],
   render: function () {
     return  (
       <div id="applicationhost">
@@ -38,25 +26,9 @@ var Main = React.createClass({
         </aside>
 
         <div className={"main pane-col " + (this.state.isSidebarVisibleForMobile ? " outtaway" : "")}>
-
-          <header>
-            <button type="button" className={"navbar-toggle" + (this.state.isSidebarVisibleForMobile ? " outtaway" : "")} data-toggle="collapse" onClick={this.toggleSidebar}>
-              <span className="sr-only">Toggle navigation</span>
-              <span className="icon-bar"></span>
-              <span className="icon-bar"></span>
-              <span className="icon-bar"></span>
-            </button>
-            <div className="title-bar">
-              <div className="pull-right">
-                Status: 
-              </div>
-              <div className="pull-right working" ng-show="working">
-              </div>
-              <a href="#">Back</a>
-              <a href="#">Home</a>
-            </div>
-          </header>
-
+          
+          <Header isSidebarVisibleForMobile={this.state.isSidebarVisibleForMobile}/>
+          
           <section id="maincontent" className="maincontent pane-row scroll-y">
             <div className="container">
               <RouteHandler/>
