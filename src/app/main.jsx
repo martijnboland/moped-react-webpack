@@ -1,4 +1,13 @@
 var React = require('react'); 
+var Router = require('react-router');
+
+var DefaultRoute = Router.DefaultRoute;
+var Link = Router.Link;
+var Route = Router.Route;
+var RouteHandler = Router.RouteHandler;
+
+var Home = require('./home.jsx');
+var Settings = require('./settings/settings.jsx');
 
 var connectionStates = {
   online: 'Online',
@@ -24,7 +33,7 @@ var Main = React.createClass({
       <div id="applicationhost">
         <aside id="menu" className="menu pane-col scroll-y">
           <div className="panel">
-            <a href="#/settings"><div className="panel-heading settings">Settings</div></a>
+            <Link to="settings"><div className="panel-heading settings">Settings</div></Link>
           </div>
         </aside>
 
@@ -50,7 +59,7 @@ var Main = React.createClass({
 
           <section id="maincontent" className="maincontent pane-row scroll-y">
             <div className="container">
-
+              <RouteHandler/>
             </div>
           </section>
 
@@ -65,6 +74,17 @@ var Main = React.createClass({
       </div>
     );
   }
+});
+
+var routes = (
+  <Route name="main" path="/" handler={Main}>
+    <Route name="settings" handler={Settings}/>
+    <DefaultRoute handler={Home}/>
+  </Route>
+);
+
+Router.run(routes, function (Handler) {
+  React.render(<Handler/>, document.body);
 });
 
 module.exports = Main;
