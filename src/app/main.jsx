@@ -1,7 +1,9 @@
+var $ = jQuery = require('jquery');
+var bs = require('bootstrap');
+
 var React = require('react'); 
 var Reflux = require('reflux');
 var Router = require('react-router');
-var Mopidy = require('mopidy');
 
 var DefaultRoute = Router.DefaultRoute;
 var Link = Router.Link;
@@ -11,8 +13,10 @@ var RouteHandler = Router.RouteHandler;
 var Header = require('./header.jsx');
 var Home = require('./home.jsx');
 var Settings = require('./settings/settings.jsx');
+var PlaylistMenu = require('./playlists/playlistmenu.jsx')
+var Playlist = require('./playlists/playlist.jsx')
 
-var MainStore = require('./mainstore');
+var MainStore = require('./stores/mainstore');
 
 var Main = React.createClass({
   mixins: [Reflux.connect(MainStore)],
@@ -21,13 +25,17 @@ var Main = React.createClass({
       <div id="applicationhost">
         <aside id="menu" className="menu pane-col scroll-y">
           <div className="panel">
+            <PlaylistMenu />
             <Link to="settings"><div className="panel-heading settings">Settings</div></Link>
           </div>
         </aside>
 
         <div className={"main pane-col " + (this.state.isSidebarVisibleForMobile ? " outtaway" : "")}>
           
-          <Header isSidebarVisibleForMobile={this.state.isSidebarVisibleForMobile}/>
+          <Header 
+            isSidebarVisibleForMobile={this.state.isSidebarVisibleForMobile} 
+            connectionState={this.state.connectionState} 
+            isBackVisible={this.state.isBackVisible}/>
           
           <section id="maincontent" className="maincontent pane-row scroll-y">
             <div className="container">
@@ -50,6 +58,7 @@ var Main = React.createClass({
 
 var routes = (
   <Route name="main" path="/" handler={Main}>
+    <Route name="playlist" path="playlist/:id" handler={Playlist}/>
     <Route name="settings" handler={Settings}/>
     <DefaultRoute handler={Home}/>
   </Route>

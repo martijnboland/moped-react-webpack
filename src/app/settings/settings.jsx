@@ -1,20 +1,20 @@
 var React = require('react');
 var Reflux = require('reflux');
-var SettingsStore = require('./store');
-var SettingsActions = require('./actions');
+var settingsStore = require('./store');
+var settingsActions = require('./actions');
 
 var Settings = React.createClass({
-  mixins: [Reflux.connect(SettingsStore)],
+  mixins: [Reflux.connect(settingsStore)],
   handleUrlChange: function (e) {
     this.setState({ mopidyUrl: e.target.value });
   },
   verifyConnection: function (e) {
     e.preventDefault();
-    SettingsActions.verifyMopidyUrl(this.state.mopidyUrl);
+    settingsActions.verifyMopidyUrl(this.state.mopidyUrl);
   },
   saveSettings: function (e) {
     e.preventDefault();
-    SettingsActions.save(this.state);
+    settingsActions.save(this.state);
   },
   render: function () {
     return  (

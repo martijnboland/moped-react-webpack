@@ -12,6 +12,12 @@ var Header = React.createClass({
     window.history.back();
   },
   render: function() {
+    var backButton;
+    if (this.props.isBackVisible) {
+      backButton = <a href="#" onClick={this.goBack}>Back</a>;
+    } else {
+      backButton = null;
+    }
     return (
       <header>
         <button type="button" className={"navbar-toggle" + (this.props.isSidebarVisibleForMobile ? " outtaway" : "")} data-toggle="collapse" onClick={this.toggleSidebar}>
@@ -24,9 +30,8 @@ var Header = React.createClass({
           <div className="pull-right">
             Status: {this.props.connectionState}
           </div>
-          <div className="pull-right working">
-          </div>
-          <a href="#" onClick={this.goBack}>Back</a>
+          <div className="pull-right working"></div>
+          {backButton}
           <a href="#">Home</a>
         </div>
       </header>

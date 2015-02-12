@@ -32,17 +32,19 @@ var settingsStore = Reflux.createStore({
     }, 1000);
   },
   onSave: function (settings) {
-    window.localStorage[settingsKey] = JSON.stringify(settings);
+    this.settings = settings;
+    window.localStorage[settingsKey] = JSON.stringify(this.settings);
     window.alert('Settings saved');
-    this.trigger(settings);
+    this.trigger(this.settings);
   },
   getInitialState: function () {
     if (window.localStorage[settingsKey]) {
-      return JSON.parse(window.localStorage[settingsKey]);
+      this.settings = JSON.parse(window.localStorage[settingsKey]);
     }
     else{
-      return { mopidyUrl: '' };
+      this.settings = { mopidyUrl: '' };
     }
+    return this.settings;
   }
 });
 

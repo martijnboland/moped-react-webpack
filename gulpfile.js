@@ -26,7 +26,7 @@ var env = config.env.dev;
 
 var runBrowserify = function (watch) {
   var appBundler = browserify({
-    entries: ['./src/app/main.js'],
+    entries: ['./src/app/main.jsx'],
     transform: [reactify], // Convert JSX style
     debug: ! env.isProduction, // Sourcemapping
     cache: {}, packageCache: {}, fullPaths: true // Requirement of watchify

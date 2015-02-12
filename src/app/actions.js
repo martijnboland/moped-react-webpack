@@ -1,13 +1,19 @@
 var Reflux = require('Reflux');
 
-var Actions = Reflux.createActions([
-  'toggleSidebar',
-  'play',
-  'pause',
-  'prev',
-  'next',
-  'toggleRandom',
-  'seek'
-]);
+var actions = Reflux.createActions({
+  'toggleSidebar' : {},
 
-module.exports = Actions;
+  'loadPlaylists': { asyncResult: true },
+
+
+  'mopidyCalled' : {},
+
+  'play' : {},
+  'pause' : {},
+  'prev' : {},
+  'next' : {},
+  'toggleRandom' : {},
+  'seek' : {}
+});
+
+module.exports = actions;
