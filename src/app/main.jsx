@@ -58,7 +58,7 @@ var Main = React.createClass({
 
 var routes = (
   <Route name="main" path="/" handler={Main}>
-    <Route name="playlist" path="playlist/:id" handler={Playlist}/>
+    <Route name="playlist" path="playlist/:uri" handler={Playlist}/>
     <Route name="settings" handler={Settings}/>
     <DefaultRoute handler={Home}/>
   </Route>

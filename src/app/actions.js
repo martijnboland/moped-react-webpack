@@ -4,7 +4,7 @@ var actions = Reflux.createActions({
   'toggleSidebar' : {},
 
   'loadPlaylists': { asyncResult: true },
-
+  'loadPlaylist' : {},
 
   'mopidyCalled' : {},
 
