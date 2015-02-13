@@ -30,7 +30,7 @@ var Header = React.createClass({
           <div className="pull-right">
             Status: {this.props.connectionState}
           </div>
-          <div className="pull-right working"></div>
+          <div className="pull-right "></div>
           {backButton}
           <a href="#">Home</a>
         </div>

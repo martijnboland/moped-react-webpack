@@ -11,10 +11,12 @@ var Route = Router.Route;
 var RouteHandler = Router.RouteHandler;
 
 var Header = require('./header.jsx');
-var Home = require('./home.jsx');
-var Settings = require('./settings/settings.jsx');
+var PlayerControls = require('./playback/playercontrols.jsx');
 var PlaylistMenu = require('./playlists/playlistmenu.jsx')
+
+var Home = require('./home.jsx');
 var Playlist = require('./playlists/playlist.jsx')
+var Settings = require('./settings/settings.jsx');
 
 var MainStore = require('./stores/mainstore');
 
@@ -44,11 +46,10 @@ var Main = React.createClass({
           </section>
 
           <section className="nowplaying pane-row">
-            
           </section>
 
           <section className="controls pane-row">
-            
+            <PlayerControls/>            
           </section>
         </div>      
       </div>

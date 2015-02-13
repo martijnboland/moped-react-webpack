@@ -1,17 +1,37 @@
 var React = require('react');
-var util = require('../util')
+var Reflux = require('reflux');
+var actions = require('../actions');
+var util = require('../util');
 
 var Track = React.createClass({
+  mixins: [Reflux.listenTo(actions.mopidyCalled, 'onMopidyCalled')],
   propTypes: {
     track: React.PropTypes.object.isRequired
+  },
+  getInitialState: function () {
+    return {
+      isPlaying: false
+    }
+  },
+  componentWillReceiveProps: function () {
+    this.setState({ isPlaying: false })
   },
   getTrackProvider: function (track) {
     var provider = track.uri.split(':')[0];
     return (provider.charAt(0).toUpperCase() + provider.slice(1));
   },
+  play: function (e) {
+    e.preventDefault();
+    actions.playTrackRequest(this.props.track);
+  },
+  onMopidyCalled: function (ev, args) {
+    if (ev === 'event:trackPlaybackStarted' || ev === 'event:trackPlaybackPaused') {
+      this.setState({ isPlaying: args.tl_track.track.uri === this.props.track.uri });
+    }
+  },
   render: function() {
     return (
-      <a href="" className="list-group-item row">
+      <a href="" className={'list-group-item row' + (this.state.isPlaying ? ' active' : '')} onClick={this.play}>
         <div className="col-xs-1">{this.props.trackNo}</div>
         <h4 className="col-xs-10 col-sm-5 list-group-item-heading">{this.props.track.name}</h4>
         <div className="clearfix visible-xs"></div>

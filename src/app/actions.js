@@ -8,11 +8,19 @@ var actions = Reflux.createActions({
 
   'mopidyCalled' : {},
 
+  'getPlaybackState' : { asyncResult: true },
+  'getVolume' : { asyncResult: true },
+  'getRandom' : { asyncResult: true },
+
+  'playTrackRequest' : {},
+  'playTrack' : {},
+
   'play' : {},
   'pause' : {},
   'prev' : {},
   'next' : {},
-  'toggleRandom' : {},
+  'setVolume' : {},
+  'setRandom' : {},
   'seek' : {}
 });
 

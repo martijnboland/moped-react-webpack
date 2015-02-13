@@ -10,6 +10,7 @@ var TrackList = require('../widgets/tracklist.jsx');
 var Playlist = React.createClass({
   mixins: [
     Reflux.listenTo(playlistsStore, 'onPlaylistsChanged', 'onPlaylistsChanged'),
+    Reflux.listenTo(actions.playTrackRequest, 'onPlayTrackRequest'),
     Router.State
   ],
   getInitialState: function () {
@@ -28,6 +29,10 @@ var Playlist = React.createClass({
   onPlaylistsChanged: function (playlists) {
     var currentPlaylist = _.find(playlists, { uri: this.state.currentPlaylistUri });
     this.setState({ playlists: playlists, currentPlaylist: currentPlaylist })
+  },
+  onPlayTrackRequest: function (track) {
+    var surroundingTracks = this.state.currentPlaylist ? this.state.currentPlaylist.tracks : [];
+    actions.playTrack(track, surroundingTracks);
   },
   loadPlaylist: function () {
     var uri = this.getParams().uri;
