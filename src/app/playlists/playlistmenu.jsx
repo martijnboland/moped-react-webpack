@@ -39,9 +39,10 @@ var processPlaylists = function (playlists) {
     var paths = playlist.name.split('/');
     if (paths.length > 1) {
       // Folders, last item in array is the playlist name
-      playlist.name = paths.pop();
+      var playlistInFolder = _.cloneDeep(playlist);
+      playlistInFolder.name = paths.pop();
       var folder = ensureFolderExists(paths, processedPlaylists);
-      folder.items.push(playlist);
+      folder.items.push(playlistInFolder);
     }
     else {
       processedPlaylists.push(playlist);

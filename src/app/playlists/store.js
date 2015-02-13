@@ -7,9 +7,7 @@ var store = Reflux.createStore({
     this.listenTo(actions.loadPlaylists.completed, this.onPlaylistsLoaded);
   },
   getInitialState: function () {
-    return {
-      playlists: this.playlists || { playlists: [] }
-    };
+    return this.playlists || [];
   },
   onMopidyCalled: function (ev) {
     if (ev === 'event:playlistsLoaded' || ev === 'state:online') {

@@ -9,7 +9,7 @@ var TrackList = require('../widgets/tracklist.jsx');
 
 var Playlist = React.createClass({
   mixins: [
-    Reflux.listenTo(playlistsStore, 'onPlaylistsChanged'),
+    Reflux.listenTo(playlistsStore, 'onPlaylistsChanged', 'onPlaylistsChanged'),
     Router.State
   ],
   getInitialState: function () {
@@ -32,9 +32,7 @@ var Playlist = React.createClass({
   loadPlaylist: function () {
     var uri = this.getParams().uri;
     var currentPlaylist = null;
-    if (this.state.playlists.length === 0) {
-      actions.loadPlaylists();
-    } else {
+    if (this.state.playlists.length > 0) {
       currentPlaylist = _.find(this.state.playlists, { uri: uri });
     }
     this.setState({ currentPlaylistUri: uri, currentPlaylist: currentPlaylist });
