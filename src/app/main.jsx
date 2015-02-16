@@ -11,6 +11,7 @@ var Route = Router.Route;
 var RouteHandler = Router.RouteHandler;
 
 var Header = require('./header.jsx');
+var NowPlaying = require('./nowplaying/nowplaying.jsx')
 var PlayerControls = require('./playback/playercontrols.jsx');
 var PlaylistMenu = require('./playlists/playlistmenu.jsx')
 
@@ -46,6 +47,7 @@ var Main = React.createClass({
           </section>
 
           <section className="nowplaying pane-row">
+            <NowPlaying/>
           </section>
 
           <section className="controls pane-row">

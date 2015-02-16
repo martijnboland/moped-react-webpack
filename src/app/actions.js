@@ -11,6 +11,8 @@ var actions = Reflux.createActions({
   'getPlaybackState' : { asyncResult: true },
   'getVolume' : { asyncResult: true },
   'getRandom' : { asyncResult: true },
+  'getTimePosition' : { asyncResult: true },
+  'getCurrentTrack' : { asyncResult: true },
 
   'playTrackRequest' : {},
   'playTrack' : {},
@@ -21,7 +23,8 @@ var actions = Reflux.createActions({
   'next' : {},
   'setVolume' : {},
   'setRandom' : {},
-  'seek' : {}
+  'seek' : {},
+  'seeking' : {}
 });
 
 module.exports = actions;

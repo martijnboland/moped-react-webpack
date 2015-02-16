@@ -112,6 +112,12 @@ var mopidyStore = Reflux.createStore({
   onGetRandom: function () {
     actions.getRandom.promise(this.mopidy.tracklist.getRandom());
   },
+  onGetTimePosition: function () {
+    actions.getTimePosition.promise(this.mopidy.playback.getTimePosition());
+  },
+  onGetCurrentTrack: function () {
+    actions.getCurrentTrack.promise(this.mopidy.playback.getCurrentTrack());
+  },
   onPlay: function () {
     this.mopidy.playback.play();
   },
@@ -129,6 +135,9 @@ var mopidyStore = Reflux.createStore({
   },
   onSetRandom: function (isRandom) {
     this.mopidy.tracklist.setRandom([ isRandom ]);
+  },
+  onSeek: function (timePosition) {
+    this.mopidy.playback.seek({time_position: timePosition});
   }
 });
 
