@@ -1,5 +1,5 @@
 # moped-react
-Experimental Mopidy web client written with ReactJS
+Experimental Mopidy web client written with ReactJS. You'll need to have a working [Mopidy](https://www.mopidy.com/) server with some playlists to try it.
 
 ## Development
 
