@@ -1,10 +1,11 @@
 {
-  "name": "moped-react",
+  "name": "moped-react-webpack",
   "version": "0.1.0",
   "description": "A Mopidy Web Client written with ReactJS.",
   "scripts": {
-    "start": "gulp watch",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "node_modules/.bin/webpack --display-error-details",
+    "dev": "node_modules/.bin/webpack-dev-server --devtool eval --progress --colors --hot --content-base build",
+    "dist": "node_modules/.bin/webpack -p  --config webpack-production.config.js --progress --profile --colors"
   },
   "author": "Martijn Boland",
   "license": "MIT",
@@ -19,29 +20,15 @@
     "reflux": "^0.2.5"
   },
   "devDependencies": {
-    "browser-sync": "^2.0.0-rc8",
-    "browserify": "^8.1.1",
-    "browserify-shim": "^3.8.2",
-    "del": "^1.1.1",
-    "glob": "^4.3.5",
-    "gulp": "^3.8.10",
-    "gulp-concat": "^2.4.3",
-    "gulp-cssmin": "^0.1.6",
-    "gulp-if": "^1.2.5",
-    "gulp-jasmine2-phantomjs": "^0.2.0",
-    "gulp-less": "^2.0.1",
-    "gulp-livereload": "^3.6.0",
-    "gulp-notify": "^2.2.0",
-    "gulp-streamify": "0.0.5",
-    "gulp-template": "^2.1.0",
-    "gulp-uglify": "^1.1.0",
-    "gulp-util": "^3.0.2",
-    "gulp-webserver": "^0.9.0",
-    "merge-stream": "^0.1.7",
-    "phantomjs": "^1.9.15",
-    "reactify": "^1.0.0",
-    "run-sequence": "^1.0.2",
-    "vinyl-source-stream": "^1.0.0",
-    "watchify": "^2.2.1"
+    "css-loader": "^0.9.1",
+    "file-loader": "^0.8.1",
+    "html-webpack-plugin": "^1.1.0",
+    "jsx-loader": "^0.12.2",
+    "less": "^2.4.0",
+    "less-loader": "^2.0.0",
+    "style-loader": "^0.8.3",
+    "url-loader": "^0.5.5",
+    "webpack": "^1.5.3",
+    "webpack-dev-server": "^1.7.0"
   }
 }

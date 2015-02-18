@@ -8,7 +8,7 @@ var checkPositionTimer;
 
 var nowPlayingStore = Reflux.createStore({
   isSeeking: false,
-  defaultTrackImageUrl: 'assets/images/vinyl-icon.png',
+  defaultTrackImageUrl: require('../../assets/images/vinyl-icon.png'),
   getInitialState: function () {
     return this.nowPlayingState;
   },
