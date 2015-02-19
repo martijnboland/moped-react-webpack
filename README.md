@@ -7,10 +7,6 @@ Currently, it's only possible to play tracks from playlists. Other Moped functio
 A prerequisite for this project is a working Node.js environment. Then perform the following steps:
 
 ```bash
-npm install -g gulp
-```
-
-```bash
 npm install
 ```
 
