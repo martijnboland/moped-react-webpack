@@ -15,7 +15,7 @@ npm install
 ```
 
 ```bash
-gulp watch
+npm run dev
 ```
 
 ## Production ready build
@@ -23,5 +23,5 @@ gulp watch
 To make the app ready for deploy to production run:
 
 ```bash
-gulp dist
+npm run dist
 ```
